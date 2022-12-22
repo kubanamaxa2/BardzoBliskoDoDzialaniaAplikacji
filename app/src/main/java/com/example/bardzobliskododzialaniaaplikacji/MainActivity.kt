@@ -139,7 +139,6 @@ class MainActivity : AppCompatActivity() {
             }
         }
         fun heapsort(array: MutableList<Int>) {
-            // Budowanie kopca
             for (i in array.size / 2 - 1 downTo 0) {
                 heapify(array, array.size, i)
             }
@@ -187,16 +186,28 @@ class MainActivity : AppCompatActivity() {
                     popms.text = czasliczenia(czas1, czas2).toString() + "ms"
 
                 czas1 = System.currentTimeMillis()
-                for(i in 0..ilerazylos.toString().toInt())
-                    quicksort(lista.toList()) // sortowanie szybkie
-                czas2 = System.currentTimeMillis()
-                speedms.text = czasliczenia(czas1, czas2).toString() + "ms"
-
-                    czas1 = System.currentTimeMillis()
                     for(i in 0..ilerazylos.toString().toInt())
-                        quicksort(lista.toList())// sortowanie szybkie
-                        // czas2 = System.currentTimeMillis()
-                        speedms.text = czasliczenia(czas1, czas2).toString() + "ms"
+                        quicksort(lista) // sortowanie szybkie
+                czas2 = System.currentTimeMillis()
+                    speedms.text = czasliczenia(czas1, czas2).toString() + "ms"
+
+                czas1 = System.currentTimeMillis()
+                    for(i in 0..ilerazylos.toString().toInt())
+                        heapsort(lista)// sortowanie poprzez kopcowanie
+                czas2 = System.currentTimeMillis()
+                    heapms.text = czasliczenia(czas1, czas2).toString() + "ms"
+
+                czas1 = System.currentTimeMillis()
+                for(i in 0..ilerazylos.toString().toInt())
+                    scalsort(lista.toIntArray())// sortowanie poprzez scalanie
+                czas2 = System.currentTimeMillis()
+                scalms.text = czasliczenia(czas1, czas2).toString() + "ms"
+
+                czas1 = System.currentTimeMillis()
+                for(i in 0..ilerazylos.toString().toInt())
+                    wstawsort(lista)// sortowanie poprzez wstawianie
+                czas2 = System.currentTimeMillis()
+                wstawms.text = czasliczenia(czas1, czas2).toString() + "ms"
 
 
             }
