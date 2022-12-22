@@ -155,36 +155,54 @@ class MainActivity : AppCompatActivity() {
 
         //Funkcja losująca losową liste
         fun losowanie(size: Int): MutableList<Int> {
-            val random = Random()
-            return List(size) { random.nextInt(1000) }.toMutableList()
+            return List(size) { Random.nextInt(1000) }.toMutableList()
         }
 
         //Funkcja licząca roznice miedzy pomiarami
-        fun calcTime(t1 : Long, t2 : Long) : Long
+        fun czasliczenia(c1 : Long, c2 : Long) : Long
         {
-            return t2 - t1
+            return c2 - c1
         }
 
 
         // -------------------- Działanie -----------------------------
         losuj.setOnClickListener {
-            if(liczbaeledit.isEmpty() && ilerazylos.isEmpty()){
+            if(!liczbaeledit.isEmpty() && !ilerazylos.isEmpty()){
+                lostext.text = ""
                 var lista = losowanie(liczbaeledit.toString().toInt() )
 
 
-
+/*
+                temp1 = System.currentTimeMillis()
+                for (i in 0..input_ile_razy.text.toString().toInt())
+                    sortowanie_babelkowe(losowa_lista)
+                temp2 = System.currentTimeMillis()
+                wynik_babelkowe_textview.text = calcTime(temp1, temp2).toString() + " milisekund" */
 
 
                 czas1 = System.currentTimeMillis()
+                    for(i in 0..ilerazylos.toString().toInt()){
+                        sortbuble(lista)} //sortowanie bąbelkowe
+                czas2 = System.currentTimeMillis()
+                    popms.text = czasliczenia(czas1, czas2).toString() + "ms"
+
+                czas1 = System.currentTimeMillis()
+                for(i in 0..ilerazylos.toString().toInt())
+                    quicksort(lista.toList()) // sortowanie szybkie
+                czas2 = System.currentTimeMillis()
+                speedms.text = czasliczenia(czas1, czas2).toString() + "ms"
+
+                    czas1 = System.currentTimeMillis()
                     for(i in 0..ilerazylos.toString().toInt())
-                        sortbuble(lista) //sortowanie bąbelkowe
+                        quicksort(lista.toList())// sortowanie szybkie
+                        // czas2 = System.currentTimeMillis()
+                        speedms.text = czasliczenia(czas1, czas2).toString() + "ms"
 
 
-                quicksort(lista.toList()) // sortowanie szybkie
             }
             else
             {
-                Toast.makeText(this, "Wypełnij każde pole", Toast.LENGTH_SHORT).show()
+                lostext.text = "Wypełnij wszystkie pola"
             }
         }
     }
